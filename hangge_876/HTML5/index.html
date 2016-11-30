@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>今日推荐</title>
+  	<script src="js/jquery-1.8.0.min.js"></script>
+  	<link href="css/main.css" rel="stylesheet">
+    <script>
+    	$(function() {
+	        //保存各个View的默认class
+	        $(".pt-page").each( function() {
+	            var $page = $( this );
+	            $page.data( 'originalClassList', $page.attr( 'class' ) );
+	        } );
+	        
+	        //设置默认页面
+	        $(".pt-page").eq(0).addClass('pt-page-current');
+	        
+	        //点击商品添加到购物车
+	   		 $(".goodsItem").click(function() {
+		        //var num = parseInt($("#cartNums").text());
+		        //$("#cartNums").text(num+1);
+                var itemName = $(this).children("img")[0].alt;
+                var message = {"method":"addToCarCheck","name":itemName}
+                window.webkit.messageHandlers.interOp.postMessage(message)
+		    });
+	    });
+	    
+	    //View切换
+   		 function changeView(btn,newView){
+   		 	$nextPage = $(newView);
+	   		$(".pt-page").each( function() {
+	            $(this).attr( 'class', $(this).data( 'originalClassList' ) );
+	        });
+	        $nextPage.addClass("pt-page-current");
+	        
+	        //当前点击的按钮改变样式
+	        $("#pageHead ul li").removeClass("onSelected");
+	        $(btn).parent().addClass("onSelected");
+	      //  $(btn)
+   		 }
+    
+        //添加到购物车
+        function addToCar(itemName){
+            //这里只是简单的给数量+1,用来演示
+            var num = parseInt($("#cartNums").text());
+            $("#cartNums").text(num+1);
+        }
+   		 
+    </script>
+</head>
+<body>
+	<!-- 页面头部，使用绝对定位 -->
+	<header id="pageHead">
+		<section>
+			<h1 style="float: left;color: #ffffff;">今日推荐</h1>
+			<div id="cart">				
+				<img  src="img/gwc4.png" /><span id="cartNums">0</span>
+			</div>
+			
+			<div class="clear"/>
+		</section>
+		<nav>
+			<ul>
+				<li class="onSelected"><a href="#" onclick="changeView(this,'#view1')">女装</a></li>
+				<li><a href="#" onclick="changeView(this,'#view2')">男装</a></li>
+				<li><a href="#" onclick="changeView(this,'#view3')">食品</a></li>
+				<li><a href="#" onclick="changeView(this,'#view4')">数码</a></li>
+				<div class="clear"/>
+			</ul>
+		</nav>
+	</header>
+	<!-- 商品内容区域   -->
+	<article>
+			<!-- 女装商品区域  -->
+	        <div id="view1" class="pt-page">
+	        	<span class="goodsItem"><img src="img/goods/woman/n1.jpg" alt="商品0001"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n2.jpg" alt="商品0002"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n3.jpg" alt="商品0003"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n4.jpg" alt="商品0004"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n5.jpg" alt="商品0005"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n6.jpg" alt="商品0006"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n7.jpg" alt="商品0007"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n8.jpg" alt="商品0008"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n9.jpg" alt="商品0009"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n10.jpg" alt="商品0010"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n11.jpg" alt="商品0011"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n12.jpg" alt="商品0012"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n13.jpg" alt="商品0013"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n14.jpg" alt="商品0014"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n15.jpg" alt="商品0015"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n16.jpg" alt="商品0016"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n17.jpg" alt="商品0017"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n18.jpg" alt="商品0018"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n19.jpg" alt="商品0019"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n20.jpg" alt="商品0020"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n21.jpg" alt="商品0021"/></span>
+				<span class="goodsItem"><img src="img/goods/woman/n22.jpg" alt="商品0022"/></span>
+	        </div>
+	        <!-- 男装商品区域  -->
+	        <div id="view2" class="pt-page">
+	        	<span class="goodsItem"><img src="img/goods/man/nz1.jpg" /></span>
+				<span class="goodsItem"><img src="img/goods/man/nz2.jpg" /></span>
+				<span class="goodsItem"><img src="img/goods/man/nz3.jpg" /></span>
+				<span class="goodsItem"><img src="img/goods/man/nz4.jpg" /></span>
+				<span class="goodsItem"><img src="img/goods/man/nz5.jpg" /></span>
+				<span class="goodsItem"><img src="img/goods/man/nz6.jpg" /></span>
+				<span class="goodsItem"><img src="img/goods/man/nz7.jpg" /></span>
+				<span class="goodsItem"><img src="img/goods/man/nz8.jpg" /></span>
+				<span class="goodsItem"><img src="img/goods/man/nz9.jpg" /></span>
+				<span class="goodsItem"><img src="img/goods/man/nz10.jpg" /></span>SS
+	        </div>
+	        <!-- 食品商品区域  -->
+	        <div id="view3" class="pt-page">
+	        	<span class="goodsItem"><img src="img/goods/food/sp1.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/food/sp2.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/food/sp3.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/food/sp4.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/food/sp5.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/food/sp6.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/food/sp7.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/food/sp8.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/food/sp9.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/food/sp10.jpg" /></span>
+	        </div>
+	        <!-- 数码商品区域  -->
+	        <div id="view4" class="pt-page">
+	        	<span class="goodsItem"><img src="img/goods/electric/dq1.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/electric/dq2.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/electric/dq3.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/electric/dq4.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/electric/dq5.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/electric/dq6.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/electric/dq7.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/electric/dq8.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/electric/dq9.jpg" /></span>
+	        	<span class="goodsItem"><img src="img/goods/electric/dq10.jpg" /></span>
+	        </div>
+	</article>
+</body>
+</html>
